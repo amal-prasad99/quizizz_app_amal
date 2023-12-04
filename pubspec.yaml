@@ -20,3 +20,4 @@ flutter:
 
   assets:
     - assets/images/quiz-cover.png
+    - assets/questionss_list.json

@@ -45,7 +45,7 @@ class ResultScreen extends StatelessWidget {
               Text(
                 "Question " + ((s['questionIndex'] as int) + 1).toString(),
                 style: const TextStyle(
-                    fontSize: 30, color: Color.fromARGB(255, 1, 54, 97)),
+                    fontSize: 36, color: Color.fromARGB(255, 1, 54, 97)),
               ),
               const SizedBox(
                 height: 10,
@@ -54,7 +54,7 @@ class ResultScreen extends StatelessWidget {
                 (s['question']).toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    fontSize: 15, color: Color.fromARGB(255, 189, 142, 0)),
+                    fontSize: 20, color: Color.fromARGB(255, 189, 142, 0)),
               ),
               const SizedBox(
                 height: 10,
@@ -62,7 +62,7 @@ class ResultScreen extends StatelessWidget {
               const Text(
                 "Correct Answer",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 25,
                   color: Color.fromARGB(255, 1, 54, 97),
                 ),
               ),
@@ -73,7 +73,9 @@ class ResultScreen extends StatelessWidget {
                 (s['correct_answer']).toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    fontSize: 15, color: Color.fromARGB(255, 5, 95, 9)),
+                  fontSize: 20,
+                  color: Color.fromARGB(255, 5, 95, 9),
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -81,7 +83,7 @@ class ResultScreen extends StatelessWidget {
               const Text(
                 "Your Answer",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 25,
                   color: Color.fromARGB(255, 1, 54, 97),
                 ),
               ),
@@ -91,7 +93,13 @@ class ResultScreen extends StatelessWidget {
               Text(
                 s['user_answer'].toString(),
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 15, color: Colors.red),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: s['user_answer'].toString() ==
+                          s['correct_answer'].toString()
+                      ? Colors.green
+                      : Colors.red,
+                ),
               ),
             ],
           ),
@@ -124,18 +132,31 @@ class ResultScreen extends StatelessWidget {
               ),
               Text(
                 'Correct : $count / 10',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: const TextStyle(fontSize: 20, color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               ...getSummary().map((s) => buildCard(s)),
-              OutlinedButton(
-                onPressed: () {
-                  onAction('start');
-                },
-                child: const Text('Restart'),
-              )
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: OutlinedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  onPressed: () {
+                    onAction('start');
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Restart',
+                      style: TextStyle(color: Colors.white, fontSize: 25),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

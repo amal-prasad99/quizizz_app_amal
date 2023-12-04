@@ -23,11 +23,23 @@ class StartScreen extends StatelessWidget {
               color: Colors.white,
             ),
           ),
+          const SizedBox(
+            height: 30,
+          ),
           OutlinedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            ),
             onPressed: () {
               onAction('quiz');
             },
-            child: const Text('Start Quiz'),
+            child: const Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                'Start Quiz',
+                style: TextStyle(fontSize: 25),
+              ),
+            ),
           )
         ],
       ),
